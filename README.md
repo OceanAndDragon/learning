@@ -1,2 +1,2 @@
-# learning
-My Learning Space
+# Learning
+## Leetcode
