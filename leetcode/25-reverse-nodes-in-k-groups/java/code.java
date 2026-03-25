@@ -1,6 +1,6 @@
 import ds.ListNode;
 
-class Solution {
+public class code {
 
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode newHead = new ListNode(0);
