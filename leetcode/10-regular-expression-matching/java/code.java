@@ -34,5 +34,27 @@ public class code {
         dp[i][j] = match ? 1 : -1;
         return match;
     }
+
+    public boolean isMatching2(String s, String p) {
+        int m = s.length(), n = p.length();
+        boolean[][] dp = new boolean[m + 1][n + 1];
+        // base case: both empty will be true
+        dp[m][n] = true;
+        for (int i = m; i >= 0; i--) {
+            for (int j = n - 1; j >= 0; j--) {
+                // check if current pattern is valid
+                boolean match = i < m && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.');
+                // check wildcard
+                if (j + 1 < n && p.charAt(j + 1) == '*') {
+                    // zero occurrence OR one or more occurrence
+                    dp[i][j] = dp[i][j + 2] || (match && dp[i + 1][j]);
+                } else if (match) {
+                    // get the state of next
+                    dp[i][j] = dp[i + 1][j + 1];
+                }
+            }
+        }
+        return dp[0][0];
+    }
     
 }
